@@ -3,6 +3,7 @@
 const http = require('http');
 const util = require('util');
 const url = require('url');
+const fs = require('fs');
 const server = http.createServer();
 const PORT = process.env.PORT || 80;
 
@@ -10,20 +11,21 @@ const PORT = process.env.PORT || 80;
 
 server.on('request', (req, res) => {
 
-	req.reqChunks = [];
+    res.writeHead(200, 'Ok');
+    let stream = fs.createReadStream('index.html')
+    stream.pipe(res);
+
+    req.reqChunks = [];
     req.on('data', (data) => {
-    	req.reqChunks.push(data);
+        req.reqChunks.push(data);
     });
 
     req.on('end', () => {
         console.log(`request url: ${req.url}`);
-        console.log(util.inspect(req.headers, { showHidden: true, depth: null, colors: true }));
-        console.log(req.rawHeaders);
+        console.log(req.headers);
 
         let reqStr = Buffer.concat(req.reqChunks).toString('utf8');
         console.log(reqStr);
-        res.writeHead(200, {'content-length': 12});
-        res.end('hello world!');
     });
 });
 

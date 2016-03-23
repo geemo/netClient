@@ -3,8 +3,8 @@
 var request = require('./request.js');
 
 request({
-	method: 'post',
-	url: 'http://localhost:3000/aaa',
+	method: 'get',
+	url: 'http://localhost/aaa',
 	qs: {a: 5, b: 6},
 	data: {c: 7, d: 8},
 	headers: {
