@@ -6,12 +6,13 @@ const url = require('url');
 const server = http.createServer();
 const PORT = process.env.PORT || 80;
 
-let chunks = [];
+
 
 server.on('request', (req, res) => {
 
+	req.reqChunks = [];
     req.on('data', (data) => {
-    	chunks.push(data);
+    	req.reqChunks.push(data);
     });
 
     req.on('end', () => {
@@ -19,9 +20,10 @@ server.on('request', (req, res) => {
         console.log(util.inspect(req.headers, { showHidden: true, depth: null, colors: true }));
         console.log(req.rawHeaders);
 
-        let reqStr = Buffer.concat(chunks).toString('utf8');
+        let reqStr = Buffer.concat(req.reqChunks).toString('utf8');
         console.log(reqStr);
-        res.end();
+        res.writeHead(200, {'content-length': 12});
+        res.end('hello world!');
     });
 });
 
