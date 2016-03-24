@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 80;
 request({
     method: 'post',
     url: `http://localhost:${PORT}`,
+    headers: {'Date': new Date().toUTCString()},
     qs: { a: 5, b: 6 },
     data: { c: 7, d: 8 }
 }).then(data => {
