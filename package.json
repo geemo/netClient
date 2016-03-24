@@ -2,7 +2,14 @@
   "name": "net-client",
   "version": "1.0.0",
   "description": "---\r ##### 暂时实现硬编码版本,待封装",
-  "main": "client.js",
+  "main": "test/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node test/server.js",
+    "test": "node test/client.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tenterrain/netClient.git"

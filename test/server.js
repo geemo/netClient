@@ -7,15 +7,13 @@ const fs = require('fs');
 const server = http.createServer();
 const PORT = process.env.PORT || 80;
 
-
-
 server.on('request', (req, res) => {
-
     res.writeHead(200, 'Ok');
-    let stream = fs.createReadStream('index.html')
+    let stream = fs.createReadStream('static/index.html')
     stream.pipe(res);
 
     req.reqChunks = [];
+    
     req.on('data', (data) => {
         req.reqChunks.push(data);
     });
@@ -29,6 +27,4 @@ server.on('request', (req, res) => {
     });
 });
 
-server.listen(PORT, () => {
-    console.log(`server start on port: ${PORT}`);
-});
+server.listen(PORT, () => console.log(`server start on port: ${PORT}`));
