@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/tenterrain/netClient/issues"
   },
-  "homepage": "https://github.com/tenterrain/netClient#readme"
+  "homepage": "https://github.com/tenterrain/netClient#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
 }
