@@ -4,7 +4,7 @@ const request = require('../lib/request.js');
 const PORT = process.env.PORT || 80;
 
 request({
-    method: 'get',
+    method: 'post',
     url: `http://localhost:${PORT}`,
     headers: {'Date': new Date().toUTCString()},
     qs: { a: 5, b: 6 },
@@ -12,3 +12,14 @@ request({
 }).then(data => {
 	console.log(data);
 }).catch(err => console.log(err.stack));
+
+// request({
+//     method: 'get',
+//     url: 'http://www.baidu.com/',
+//     headers: {
+//     	'Accept': '*/*',
+//     	'Accept-Encoding': 'identity'
+//     }
+// }).then(data => {
+// 	console.log(data);
+// }).catch(err => console.log(err.stack));
